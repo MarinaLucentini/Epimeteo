@@ -1,3 +1,5 @@
+import logo from "../assets/wired-lineal-27-globe.gif";
+
 import { useState } from "react";
 import {
   Container,
@@ -24,15 +26,10 @@ const MyNavBar = (props) => {
         className="d-flex flex-column flex-md-row"
       >
         <NavLink to="/" className="nav-link text-white">
-          <i class="bi bi-tornado"></i> Check weather of the
-          city
+          <img src={logo} alt="" fluid className="logo" />
+          Check weather of the city
         </NavLink>
-        <Nav className=" my-2 my-lg-0 text-white">
-          <h4>
-            <i className="bi bi-geo-alt-fill mx-2"></i>
-            {props.searchUser}
-          </h4>
-        </Nav>
+        <Nav className=" my-2 my-lg-0 text-white"></Nav>
 
         <Form
           onSubmit={(e) => handleSubmit(e)}

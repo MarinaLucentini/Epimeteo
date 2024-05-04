@@ -12,7 +12,7 @@ import { useState } from "react";
 const App = () => {
   const [searchUser, setSearchUser] = useState("");
   return (
-    <div data-bs-theme="dark" className="bg-dark">
+    <div className="bg-dark app">
       <BrowserRouter>
         <MyNavBar
           setSearchUser={setSearchUser}
