@@ -105,101 +105,114 @@ const Meteopage = (props) => {
 
   return (
     <>
-      <Container className="my-3 bg-dark">
+      <Container
+        className="my-3 bg-dark d-flex flex-column "
+        fluid
+      >
         {isError && (
           <Alert variant="danger">{errorMsg}</Alert>
         )}
-        {!isError && !isLoading && (
-          <Row className="flex-column align-items-center">
-            <h5
-              className="text-white
+        {!isError && !isLoading && city && (
+          <>
+            <Row className="flex-column align-items-center justify-content-center">
+              <h5
+                className="text-white
                   "
-            >
-              <img src={place} alt="" className="logo" />
-              {city[0].name}, {city[0].state},{" "}
-              {city[0].country}
-            </h5>
-            <Col
-              xs={12}
-              className="d-flex justify-content-center"
-            >
-              {meteo && (
-                <>
-                  <div className="d-flex">
-                    <div
-                      data-bs-theme="dark"
-                      className="text-white d-flex flex-column align-items-center"
-                    >
-                      <Card>
-                        <Card.Img
-                          variant="top"
-                          src={randomImage(
-                            meteo.weather[0].main
-                          )}
-                        />
-                        <Card.Body>
-                          <Card.Title className="d-flex align-items-center justify-content-between">
-                            <h2 className="display-5">
-                              {Math.round(meteo.main.temp)}{" "}
-                              °
-                            </h2>
-                            <h4 className="mx-3">
-                              {meteo.weather[0].main}
-                            </h4>
-                            <img
-                              src={`http://openweathermap.org/img/wn/${meteo.weather[0].icon}.png`}
-                              alt=""
-                            />
-                          </Card.Title>
-                          <Card.Text
-                            as="div"
-                            className="d-flex flex-column "
-                          >
-                            <h5 className="secondary">
-                              Max-temp {meteo.main.temp_max}
-                              , Min-temp{" "}
-                              {meteo.main.temp_min}
-                            </h5>
-
-                            <h5 className="secondary">
-                              Wind: {meteo.wind.speed}
+              >
+                <img src={place} alt="" className="logo" />
+                {city[0].name}, {city[0].state},{" "}
+                {city[0].country}
+              </h5>
+              <Col
+                xs={12}
+                className="d-flex justify-content-center"
+              >
+                {meteo && (
+                  <>
+                    <div className="d-flex">
+                      <div
+                        data-bs-theme="dark"
+                        className="text-white d-flex flex-column align-items-center"
+                      >
+                        <Card>
+                          <Card.Img
+                            variant="top"
+                            src={randomImage(
+                              meteo.weather[0].main
+                            )}
+                          />
+                          <Card.Body>
+                            <Card.Title className="d-flex align-items-center justify-content-evenly">
+                              <h2 className="display-5">
+                                {Math.round(
+                                  meteo.main.temp
+                                )}{" "}
+                                °
+                              </h2>
+                              <h4 className="mx-3">
+                                {meteo.weather[0].main}
+                              </h4>
+                            </Card.Title>
+                            <Card.Text
+                              as="div"
+                              className="d-flex flex-column align-items-center"
+                            >
                               <img
-                                src={wind}
+                                src={`http://openweathermap.org/img/wn/${meteo.weather[0].icon}.png`}
                                 alt=""
-                                fluid
-                                className="logo"
-                              />{" "}
-                              Humidity:{" "}
-                              {meteo.main.humidity}
-                              <img
-                                src={humidity}
-                                alt=""
-                                fluid
-                                className="logo"
+                                className="w-25"
                               />
-                            </h5>
-                          </Card.Text>
-                        </Card.Body>
-                      </Card>
+                              <div>
+                                <h5 className="secondary">
+                                  Max-temp{" "}
+                                  {meteo.main.temp_max},
+                                  Min-temp{" "}
+                                  {meteo.main.temp_min}
+                                </h5>
+
+                                <h5 className="secondary">
+                                  Wind: {meteo.wind.speed}
+                                  <img
+                                    src={wind}
+                                    alt=""
+                                    fluid
+                                    className="logo"
+                                  />{" "}
+                                  Humidity:{" "}
+                                  {meteo.main.humidity}
+                                  <img
+                                    src={humidity}
+                                    alt=""
+                                    fluid
+                                    className="logo"
+                                  />
+                                </h5>
+                              </div>
+                            </Card.Text>
+                          </Card.Body>
+                        </Card>
+                      </div>
                     </div>
-                  </div>
-                </>
-              )}
-              {isLoading && (
-                <h5>
-                  {" "}
-                  Loading...
-                  <Spinner
-                    animation="border"
-                    role="status"
-                  ></Spinner>
-                </h5>
-              )}
-            </Col>
-            <Col xs={12} className="my-3">
-              <Weekmeteo city={city} />
-            </Col>
-          </Row>
+                  </>
+                )}
+                {isLoading && (
+                  <h5>
+                    {" "}
+                    Loading...
+                    <Spinner
+                      animation="border"
+                      role="status"
+                    ></Spinner>
+                  </h5>
+                )}
+              </Col>
+            </Row>
+            <Row className="justify-content-center">
+              <Col xs={12} className="my-3">
+                <Weekmeteo city={city} />
+              </Col>
+            </Row>
+          </>
         )}
       </Container>
     </>

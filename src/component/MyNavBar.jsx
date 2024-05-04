@@ -1,4 +1,5 @@
 import logo from "../assets/wired-lineal-27-globe.gif";
+import search from "../assets/wired-flat-19-magnifier-zoom-search.gif";
 
 import { useState } from "react";
 import {
@@ -43,8 +44,12 @@ const MyNavBar = (props) => {
             value={city}
             onChange={(e) => setCity(e.target.value)}
           />
-          <Button type="submit" variant="outline-light">
-            Search
+          <Button type="submit" variant="btn">
+            <img
+              src={search}
+              alt=""
+              className="img-fluid w-25"
+            />
           </Button>
         </Form>
       </Container>
