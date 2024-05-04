@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
-import humidity from "../assets/wired-lineal-447-water-drop.gif";
-import wind from "../assets/wired-lineal-1-cloud.gif";
 
 const Weekmeteo = (props) => {
   const [meteo, setMeteo] = useState();
@@ -35,21 +33,20 @@ const Weekmeteo = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.city]);
 
-  const randomImage = (weather) => {
-    switch (weather) {
-      case "Snow":
-        return "https://st2.depositphotos.com/2419757/42796/v/450/depositphotos_427961088-stock-illustration-family-is-having-fun-outside.jpg";
-
-      case "Clear":
-        return "https://i.pinimg.com/564x/bc/59/c7/bc59c75e83cbedeb2b4741988296ff0c.jpg";
-
-      case "Rain":
-        return "https://i.pinimg.com/564x/c8/0c/e7/c80ce7295ad100589d81e37080cca247.jpg";
-
-      default:
-        return "https://i.pinimg.com/564x/73/63/96/7363968426d4d56c10ec244bf50cff13.jpg";
-    }
+  const getDayOfTheWeek = (dateStr) => {
+    const date = new Date(dateStr);
+    const days = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    return days[date.getDay()];
   };
+
   return (
     <>
       {meteo && (
@@ -58,60 +55,27 @@ const Weekmeteo = (props) => {
             <Col>
               {meteo && (
                 <Card>
-                  <Card.Img
-                    variant="top"
-                    src={randomImage(
-                      meteo.list[5].weather[0].main
-                    )}
-                  />
                   <Card.Body>
-                    <Card.Title className="d-flex align-items-center justify-content-between">
-                      <h2 className="display-5">
+                    <Card.Title className="d-flex flex-column align-items-center">
+                      <p>
+                        {getDayOfTheWeek(
+                          meteo.list[5].dt_txt
+                        )}
+                      </p>
+                      <h3>
                         {Math.round(
                           meteo.list[5].main.temp
                         )}{" "}
                         °
-                      </h2>
-                      <h4 className="mx-3">
+                      </h3>
+                      <h4 className="mx-3 d-flex align-items-center">
                         {meteo.list[5].weather[0].main}
-                      </h4>
-                      <img
-                        src={`http://openweathermap.org/img/wn/${meteo.list[5].weather[0].icon}.png`}
-                        alt=""
-                      />
-                    </Card.Title>
-                    <Card.Text
-                      as="div"
-                      className="d-flex flex-column "
-                    >
-                      <h5 className="secondary">
-                        Max-temp{" "}
-                        {meteo.list[5].main.temp_max}
-                      </h5>
-                      <h5 className="secondary">
-                        Min-temp{" "}
-                        {meteo.list[5].main.temp_min}
-                      </h5>
-                      <h5 className="secondary">
-                        Wind: {meteo.list[5].wind.speed}
                         <img
-                          src={wind}
+                          src={`http://openweathermap.org/img/wn/${meteo.list[5].weather[0].icon}.png`}
                           alt=""
-                          fluid
-                          className="logo"
-                        />{" "}
-                      </h5>
-                      <h5 className="secondary">
-                        Humidity:{" "}
-                        {meteo.list[5].main.humidity}
-                        <img
-                          src={humidity}
-                          alt=""
-                          fluid
-                          className="logo"
                         />
-                      </h5>
-                    </Card.Text>
+                      </h4>
+                    </Card.Title>
                   </Card.Body>
                 </Card>
               )}
@@ -119,60 +83,27 @@ const Weekmeteo = (props) => {
             <Col>
               {meteo && (
                 <Card>
-                  <Card.Img
-                    variant="top"
-                    src={randomImage(
-                      meteo.list[10].weather[0].main
-                    )}
-                  />
                   <Card.Body>
-                    <Card.Title className="d-flex align-items-center justify-content-between">
-                      <h2 className="display-5">
+                    <Card.Title className="d-flex flex-column align-items-center">
+                      <p>
+                        {getDayOfTheWeek(
+                          meteo.list[10].dt_txt
+                        )}
+                      </p>
+                      <h3>
                         {Math.round(
                           meteo.list[10].main.temp
                         )}{" "}
                         °
-                      </h2>
-                      <h4 className="mx-3">
+                      </h3>
+                      <h4 className="mx-3 d-flex align-items-center">
                         {meteo.list[10].weather[0].main}
-                      </h4>
-                      <img
-                        src={`http://openweathermap.org/img/wn/${meteo.list[10].weather[0].icon}.png`}
-                        alt=""
-                      />
-                    </Card.Title>
-                    <Card.Text
-                      as="div"
-                      className="d-flex flex-column "
-                    >
-                      <h5 className="secondary">
-                        Max-temp{" "}
-                        {meteo.list[10].main.temp_max}
-                      </h5>
-                      <h5 className="secondary">
-                        Min-temp{" "}
-                        {meteo.list[10].main.temp_min}
-                      </h5>
-                      <h5 className="secondary">
-                        Wind: {meteo.list[10].wind.speed}
                         <img
-                          src={wind}
+                          src={`http://openweathermap.org/img/wn/${meteo.list[10].weather[0].icon}.png`}
                           alt=""
-                          fluid
-                          className="logo"
-                        />{" "}
-                      </h5>
-                      <h5 className="secondary">
-                        Humidity:{" "}
-                        {meteo.list[10].main.humidity}
-                        <img
-                          src={humidity}
-                          alt=""
-                          fluid
-                          className="logo"
                         />
-                      </h5>
-                    </Card.Text>
+                      </h4>
+                    </Card.Title>
                   </Card.Body>
                 </Card>
               )}
@@ -180,60 +111,27 @@ const Weekmeteo = (props) => {
             <Col>
               {meteo && (
                 <Card>
-                  <Card.Img
-                    variant="top"
-                    src={randomImage(
-                      meteo.list[15].weather[0].main
-                    )}
-                  />
                   <Card.Body>
-                    <Card.Title className="d-flex align-items-center justify-content-between">
-                      <h2 className="display-5">
+                    <Card.Title className="d-flex flex-column align-items-center">
+                      <p>
+                        {getDayOfTheWeek(
+                          meteo.list[15].dt_txt
+                        )}
+                      </p>
+                      <h3>
                         {Math.round(
                           meteo.list[15].main.temp
                         )}{" "}
                         °
-                      </h2>
-                      <h4 className="mx-3">
+                      </h3>
+                      <h4 className="mx-3 d-flex align-items-center">
                         {meteo.list[15].weather[0].main}
-                      </h4>
-                      <img
-                        src={`http://openweathermap.org/img/wn/${meteo.list[15].weather[0].icon}.png`}
-                        alt=""
-                      />
-                    </Card.Title>
-                    <Card.Text
-                      as="div"
-                      className="d-flex flex-column "
-                    >
-                      <h5 className="secondary">
-                        Max-temp{" "}
-                        {meteo.list[15].main.temp_max}
-                      </h5>
-                      <h5 className="secondary">
-                        Min-temp{" "}
-                        {meteo.list[15].main.temp_min}
-                      </h5>
-                      <h5 className="secondary">
-                        Wind: {meteo.list[15].wind.speed}
                         <img
-                          src={wind}
+                          src={`http://openweathermap.org/img/wn/${meteo.list[15].weather[0].icon}.png`}
                           alt=""
-                          fluid
-                          className="logo"
-                        />{" "}
-                      </h5>
-                      <h5 className="secondary">
-                        Humidity:{" "}
-                        {meteo.list[15].main.humidity}
-                        <img
-                          src={humidity}
-                          alt=""
-                          fluid
-                          className="logo"
                         />
-                      </h5>
-                    </Card.Text>
+                      </h4>
+                    </Card.Title>
                   </Card.Body>
                 </Card>
               )}
@@ -241,60 +139,27 @@ const Weekmeteo = (props) => {
             <Col>
               {meteo && (
                 <Card>
-                  <Card.Img
-                    variant="top"
-                    src={randomImage(
-                      meteo.list[20].weather[0].main
-                    )}
-                  />
                   <Card.Body>
-                    <Card.Title className="d-flex align-items-center justify-content-between">
-                      <h2 className="display-5">
+                    <Card.Title className="d-flex flex-column align-items-center">
+                      <p>
+                        {getDayOfTheWeek(
+                          meteo.list[20].dt_txt
+                        )}
+                      </p>
+                      <h3>
                         {Math.round(
                           meteo.list[20].main.temp
                         )}{" "}
                         °
-                      </h2>
-                      <h4 className="mx-3">
+                      </h3>
+                      <h4 className="mx-3 d-flex align-items-center">
                         {meteo.list[20].weather[0].main}
-                      </h4>
-                      <img
-                        src={`http://openweathermap.org/img/wn/${meteo.list[20].weather[0].icon}.png`}
-                        alt=""
-                      />
-                    </Card.Title>
-                    <Card.Text
-                      as="div"
-                      className="d-flex flex-column "
-                    >
-                      <h5 className="secondary">
-                        Max-temp{" "}
-                        {meteo.list[20].main.temp_max}
-                      </h5>
-                      <h5 className="secondary">
-                        Min-temp{" "}
-                        {meteo.list[20].main.temp_min}
-                      </h5>
-                      <h5 className="secondary">
-                        Wind: {meteo.list[20].wind.speed}
                         <img
-                          src={wind}
+                          src={`http://openweathermap.org/img/wn/${meteo.list[20].weather[0].icon}.png`}
                           alt=""
-                          fluid
-                          className="logo"
-                        />{" "}
-                      </h5>
-                      <h5 className="secondary">
-                        Humidity:{" "}
-                        {meteo.list[20].main.humidity}
-                        <img
-                          src={humidity}
-                          alt=""
-                          fluid
-                          className="logo"
                         />
-                      </h5>
-                    </Card.Text>
+                      </h4>
+                    </Card.Title>
                   </Card.Body>
                 </Card>
               )}
@@ -302,60 +167,27 @@ const Weekmeteo = (props) => {
             <Col>
               {meteo && (
                 <Card>
-                  <Card.Img
-                    variant="top"
-                    src={randomImage(
-                      meteo.list[25].weather[0].main
-                    )}
-                  />
                   <Card.Body>
-                    <Card.Title className="d-flex align-items-center justify-content-between">
-                      <h2 className="display-5">
+                    <Card.Title className="d-flex flex-column align-items-center">
+                      <p>
+                        {getDayOfTheWeek(
+                          meteo.list[25].dt_txt
+                        )}
+                      </p>
+                      <h3>
                         {Math.round(
                           meteo.list[25].main.temp
                         )}{" "}
                         °
-                      </h2>
-                      <h4 className="mx-3">
+                      </h3>
+                      <h4 className="mx-3 d-flex align-items-center">
                         {meteo.list[25].weather[0].main}
-                      </h4>
-                      <img
-                        src={`http://openweathermap.org/img/wn/${meteo.list[25].weather[0].icon}.png`}
-                        alt=""
-                      />
-                    </Card.Title>
-                    <Card.Text
-                      as="div"
-                      className="d-flex flex-column "
-                    >
-                      <h5 className="secondary">
-                        Max-temp{" "}
-                        {meteo.list[25].main.temp_max}
-                      </h5>
-                      <h5 className="secondary">
-                        Min-temp{" "}
-                        {meteo.list[25].main.temp_min}
-                      </h5>
-                      <h5 className="secondary">
-                        Wind: {meteo.list[25].wind.speed}
                         <img
-                          src={wind}
+                          src={`http://openweathermap.org/img/wn/${meteo.list[25].weather[0].icon}.png`}
                           alt=""
-                          fluid
-                          className="logo"
-                        />{" "}
-                      </h5>
-                      <h5 className="secondary">
-                        Humidity:{" "}
-                        {meteo.list[25].main.humidity}
-                        <img
-                          src={humidity}
-                          alt=""
-                          fluid
-                          className="logo"
                         />
-                      </h5>
-                    </Card.Text>
+                      </h4>
+                    </Card.Title>
                   </Card.Body>
                 </Card>
               )}
@@ -363,60 +195,27 @@ const Weekmeteo = (props) => {
             <Col>
               {meteo && (
                 <Card>
-                  <Card.Img
-                    variant="top"
-                    src={randomImage(
-                      meteo.list[30].weather[0].main
-                    )}
-                  />
                   <Card.Body>
-                    <Card.Title className="d-flex align-items-center justify-content-between">
-                      <h2 className="display-5">
+                    <Card.Title className="d-flex flex-column align-items-center">
+                      <p>
+                        {getDayOfTheWeek(
+                          meteo.list[30].dt_txt
+                        )}
+                      </p>
+                      <h3>
                         {Math.round(
                           meteo.list[30].main.temp
                         )}{" "}
                         °
-                      </h2>
-                      <h4 className="mx-3">
+                      </h3>
+                      <h4 className="mx-3 d-flex align-items-center">
                         {meteo.list[30].weather[0].main}
-                      </h4>
-                      <img
-                        src={`http://openweathermap.org/img/wn/${meteo.list[30].weather[0].icon}.png`}
-                        alt=""
-                      />
-                    </Card.Title>
-                    <Card.Text
-                      as="div"
-                      className="d-flex flex-column "
-                    >
-                      <h5 className="secondary">
-                        Max-temp{" "}
-                        {meteo.list[30].main.temp_max}
-                      </h5>
-                      <h5 className="secondary">
-                        Min-temp{" "}
-                        {meteo.list[30].main.temp_min}
-                      </h5>
-                      <h5 className="secondary">
-                        Wind: {meteo.list[30].wind.speed}
                         <img
-                          src={wind}
+                          src={`http://openweathermap.org/img/wn/${meteo.list[30].weather[0].icon}.png`}
                           alt=""
-                          fluid
-                          className="logo"
-                        />{" "}
-                      </h5>
-                      <h5 className="secondary">
-                        Humidity:{" "}
-                        {meteo.list[30].main.humidity}
-                        <img
-                          src={humidity}
-                          alt=""
-                          fluid
-                          className="logo"
                         />
-                      </h5>
-                    </Card.Text>
+                      </h4>
+                    </Card.Title>
                   </Card.Body>
                 </Card>
               )}

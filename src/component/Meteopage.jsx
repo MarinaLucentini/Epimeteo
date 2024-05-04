@@ -102,6 +102,7 @@ const Meteopage = (props) => {
         return "https://i.pinimg.com/564x/73/63/96/7363968426d4d56c10ec244bf50cff13.jpg";
     }
   };
+
   return (
     <>
       <Container className="my-3 bg-dark">
@@ -152,14 +153,14 @@ const Meteopage = (props) => {
                           </Card.Title>
                           <Card.Text
                             as="div"
-                            className="d-flex flex-column  "
+                            className="d-flex flex-column "
                           >
                             <h5 className="secondary">
                               Max-temp {meteo.main.temp_max}
+                              , Min-temp{" "}
+                              {meteo.main.temp_min}
                             </h5>
-                            <h5 className="secondary">
-                              Min-temp {meteo.main.temp_min}
-                            </h5>
+
                             <h5 className="secondary">
                               Wind: {meteo.wind.speed}
                               <img
@@ -168,8 +169,6 @@ const Meteopage = (props) => {
                                 fluid
                                 className="logo"
                               />{" "}
-                            </h5>
-                            <h5 className="secondary">
                               Humidity:{" "}
                               {meteo.main.humidity}
                               <img
