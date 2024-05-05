@@ -11,7 +11,7 @@ import {
   Row,
   Stack,
 } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Homepage = () => {
   const [show, setShow] = useState(false);
@@ -21,7 +21,7 @@ const Homepage = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const savedCityByLocal = JSON.parse(
-    localStorage.getItem("searched-cities") || []
+    localStorage.getItem("searched-cities") || "[]"
   );
   useEffect(() => {
     setSavedCity(savedCityByLocal);
@@ -96,9 +96,13 @@ const Homepage = () => {
                     map
                   </h3>
 
-                  <Button variant="btn">
-                    <img src={location} alt="pin" />
-                  </Button>
+                  <Link className="btn" to={"/map"}>
+                    <img
+                      src={location}
+                      alt="pin"
+                      className="img-fluid"
+                    />
+                  </Link>
                 </div>
                 <div>
                   <img

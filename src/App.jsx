@@ -8,6 +8,7 @@ import Homepage from "./component/Homepage";
 import MyNavBar from "./component/MyNavBar";
 import Meteopage from "./component/Meteopage";
 import { useState } from "react";
+import MyMap from "./component/MyMap";
 
 const App = () => {
   const [searchUser, setSearchUser] = useState("");
@@ -24,6 +25,7 @@ const App = () => {
             path="/weatherpage/:dimamicCity"
             element={<Meteopage searchUser={searchUser} />}
           />
+          <Route path="/map" element={<MyMap />} />
         </Routes>
       </BrowserRouter>
     </div>
