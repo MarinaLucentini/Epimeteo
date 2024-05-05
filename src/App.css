@@ -6,6 +6,7 @@
 main {
   height: 100%;
   display: flex;
+  align-items: center;
 }
 .logo {
   max-width: 10%;

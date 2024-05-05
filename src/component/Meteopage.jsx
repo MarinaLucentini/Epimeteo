@@ -2,6 +2,7 @@
 import place from "../assets/wired-lineal-18-location-pin.gif";
 import humidity from "../assets/wired-lineal-447-water-drop.gif";
 import wind from "../assets/wired-lineal-1-cloud.gif";
+import iconloading from "../assets/wired-flat-1414-circle.gif";
 import { useEffect, useState } from "react";
 
 import {
@@ -10,7 +11,6 @@ import {
   Col,
   Container,
   Row,
-  Spinner,
 } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import Weekmeteo from "./Weekmeteo";
@@ -22,6 +22,7 @@ const Meteopage = (props) => {
   const [isLoading, setLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+
   const fetchCity = () => {
     setLoading(true);
     fetch(
@@ -109,6 +110,15 @@ const Meteopage = (props) => {
         className="my-3 bg-dark d-flex flex-column "
         fluid
       >
+        {isLoading && (
+          <h5>
+            <img
+              src={iconloading}
+              alt="loading"
+              className="logo"
+            />
+          </h5>
+        )}
         {isError && (
           <Alert variant="danger">{errorMsg}</Alert>
         )}
@@ -117,15 +127,16 @@ const Meteopage = (props) => {
             <Row className="flex-column align-items-center justify-content-center">
               <h5
                 className="text-white
-                  "
+                "
               >
                 <img src={place} alt="" className="logo" />
                 {city[0].name}, {city[0].state},{" "}
                 {city[0].country}
               </h5>
+
               <Col
                 xs={12}
-                className="d-flex justify-content-center"
+                className="d-flex justify-content-center my-3"
               >
                 {meteo && (
                   <>
@@ -164,10 +175,15 @@ const Meteopage = (props) => {
                               />
                               <div>
                                 <h5 className="secondary">
-                                  Max-temp{" "}
-                                  {meteo.main.temp_max},
-                                  Min-temp{" "}
-                                  {meteo.main.temp_min}
+                                  Max-temp:{" "}
+                                  {Math.round(
+                                    meteo.main.temp_max
+                                  )}
+                                  ° , Min-temp:{" "}
+                                  {Math.round(
+                                    meteo.main.temp_min
+                                  )}
+                                  °
                                 </h5>
 
                                 <h5 className="secondary">
@@ -194,16 +210,6 @@ const Meteopage = (props) => {
                       </div>
                     </div>
                   </>
-                )}
-                {isLoading && (
-                  <h5>
-                    {" "}
-                    Loading...
-                    <Spinner
-                      animation="border"
-                      role="status"
-                    ></Spinner>
-                  </h5>
                 )}
               </Col>
             </Row>

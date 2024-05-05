@@ -51,7 +51,12 @@ const Weekmeteo = (props) => {
     <>
       {meteo && (
         <Container>
-          <Row xs={6} className="flex-row">
+          <Row
+            xs={2}
+            md={3}
+            lg={5}
+            className="flex-row justify-content-center gy-3"
+          >
             {meteo.list
               .filter((item, index) => index % 8 === 0)
               .map((day, index) => (

@@ -17,6 +17,16 @@ const MyNavBar = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     props.setSearchUser(city);
+    const searchedCities =
+      JSON.parse(localStorage.getItem("searched-cities")) ||
+      [];
+
+    const updatedCities = [...searchedCities, city];
+
+    localStorage.setItem(
+      "searched-cities",
+      JSON.stringify(updatedCities)
+    );
 
     navigate(`/weatherpage/:${city}`);
   };
