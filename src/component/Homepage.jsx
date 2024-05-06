@@ -25,6 +25,7 @@ const Homepage = () => {
   );
   useEffect(() => {
     setSavedCity(savedCityByLocal);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const handleCardClick = (city) => {
     navigate(`/weatherpage/${city}`);

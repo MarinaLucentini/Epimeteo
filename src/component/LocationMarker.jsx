@@ -13,7 +13,6 @@ const LocationMarker = (props) => {
   const map = useMapEvents({
     click: handleClick,
   });
-
   return props.position === null ? null : (
     <Marker position={props.position}>
       <Popup>You are here</Popup>

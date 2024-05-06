@@ -38,7 +38,7 @@ const MeteoAlClick = (props) => {
     <>
       {meteo && (
         <>
-          <div className="d-flex justify-content-center">
+          <div className="d-flex justify-content-center my-3">
             <div
               data-bs-theme="dark"
               className="text-white d-flex flex-column align-items-center"

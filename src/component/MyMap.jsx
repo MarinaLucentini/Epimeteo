@@ -2,9 +2,9 @@ import { TileLayer, MapContainer } from "react-leaflet";
 import LocationMarker from "./LocationMarker";
 import MeteoAlClick from "./MeteoAlClick";
 import { useState } from "react";
-
 const MyMap = () => {
   const [position, setPosition] = useState(null);
+
   return (
     <>
       <MapContainer
